@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 23 Agu 2021 pada 12.39
--- Versi server: 10.4.17-MariaDB
--- Versi PHP: 7.4.15
+-- Waktu pembuatan: 13 Jan 2022 pada 17.03
+-- Versi server: 10.4.14-MariaDB
+-- Versi PHP: 7.4.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -261,6 +261,63 @@ INSERT INTO `data_toko` (`id`, `nama_toko`, `no_tlp`, `nama_pemilik`, `alamat`, 
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `friends`
+--
+
+CREATE TABLE `friends` (
+  `id` int(11) NOT NULL,
+  `groups_id` int(11) NOT NULL DEFAULT 0,
+  `nama` varchar(100) NOT NULL,
+  `no_tlp` int(50) NOT NULL,
+  `alamat` varchar(80) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `friends`
+--
+
+INSERT INTO `friends` (`id`, `groups_id`, `nama`, `no_tlp`, `alamat`, `created_at`, `updated_at`) VALUES
+(2, 1, 'nindy', 67890, 'cirebon', '2021-10-19 14:29:28', '2021-11-26 16:16:04'),
+(3, 1, 'adel', 9876, 'cirebon', '2021-10-19 14:29:28', '2021-10-19 14:29:28'),
+(9, 1, 'raja', 12345, 'majalengka', '2021-10-19 08:36:48', '2021-11-26 02:26:39'),
+(10, 3, 'amel', 67890, 'majalengka', '2021-10-19 08:42:29', '2021-11-26 16:14:38'),
+(11, 4, 'papah', 8789878, 'majalengka', '2021-11-16 08:26:51', '2021-11-26 16:14:26'),
+(12, 1, 'mamah', 8789878, 'majalengka', '2021-11-16 08:29:33', '2021-11-25 21:47:09'),
+(13, 2, 'budi', 1234, 'majalengka', '2021-11-24 23:27:09', '2021-11-26 02:26:19'),
+(14, 0, 'broskie', 98765, 'cipinang', '2021-11-25 21:07:15', '2022-01-12 16:25:05'),
+(15, 0, 'kiki', 98765, 'cipinang', '2021-11-26 01:13:23', '2022-01-12 16:23:36');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `groups`
+--
+
+CREATE TABLE `groups` (
+  `id` bigint(20) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `anggota_masuk` int(11) NOT NULL,
+  `anggota_keluar` int(11) NOT NULL,
+  `anggota_saat_ini` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `groups`
+--
+
+INSERT INTO `groups` (`id`, `name`, `description`, `anggota_masuk`, `anggota_keluar`, `anggota_saat_ini`, `created_at`, `updated_at`) VALUES
+(1, 'best friends', 'My Bestie', 2, 1, 1, '2021-11-26 23:16:04', '2021-11-26 16:16:04'),
+(3, 'kerabat', 'Kerabat', 2, 1, 1, '2021-11-26 23:14:46', '2021-11-26 16:14:46'),
+(4, 'keluarga', 'Keluarga ', 6, 1, 5, '2022-01-12 16:29:41', '2021-11-26 16:14:26');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `transaksi`
 --
 
@@ -343,7 +400,8 @@ INSERT INTO `users` (`id`, `nip`, `nis`, `name`, `image`, `email`, `email_orang_
 (3, NULL, NULL, 'Ayu', 'Capture.PNG', 'admin@gmail.com', NULL, '1', '0838371444', '$2y$10$/50MXxCKZpi1XjHqKWh3MOldLpj6wcRy4wFjJkXd85aVQyHk3pa7e', 'desa suci blok tenggeran mundu cirebon', NULL, 1, 1, NULL, NULL, 2, NULL, '2020-10-18 14:23:15', '2021-08-12 10:51:23'),
 (1602863100, NULL, NULL, 'Tomi', 'user.webp', 'sales@gmail.com', NULL, '1', '0838371444', '$2y$10$/50MXxCKZpi1XjHqKWh3MOldLpj6wcRy4wFjJkXd85aVQyHk3pa7e', 'desa suci blok tenggeran mundu cirebon', NULL, 2, 1, '1613648446', NULL, 2, NULL, '2020-10-08 14:23:15', '2021-08-10 20:29:55'),
 (1626748649, NULL, NULL, 'Deno', 'user.webp', 'sales2@gmail.com', NULL, '1', '0838371444', '$2y$10$/50MXxCKZpi1XjHqKWh3MOldLpj6wcRy4wFjJkXd85aVQyHk3pa7e', 'desa suci blok tenggeran mundu cirebon', NULL, 2, 1, '1613648446', NULL, 2, NULL, '2020-10-08 14:23:15', '2021-08-14 15:41:38'),
-(1626748651, NULL, NULL, 'Wahyu', 'user.webp', 'sales3@gmail.com', NULL, '1', '0838371444', '$2y$10$/50MXxCKZpi1XjHqKWh3MOldLpj6wcRy4wFjJkXd85aVQyHk3pa7e', 'desa suci blok tenggeran mundu cirebon', NULL, 2, 1, '1613648446', NULL, 2, NULL, '2020-10-08 14:23:15', '2021-08-14 15:41:38');
+(1626748651, NULL, NULL, 'Wahyu', 'user.webp', 'sales3@gmail.com', NULL, '1', '0838371444', '$2y$10$/50MXxCKZpi1XjHqKWh3MOldLpj6wcRy4wFjJkXd85aVQyHk3pa7e', 'desa suci blok tenggeran mundu cirebon', NULL, 2, 1, '1613648446', NULL, 2, NULL, '2020-10-08 14:23:15', '2021-08-14 15:41:38'),
+(1642089150, NULL, NULL, 'nova triyanti', 'user.webp', 'novatriyanti015@gmail.com', NULL, '1642089150', NULL, '$2y$10$4O2.HjjQbyBER8grWG0QleoIDCWgVQx1Y5dXOSOQpiqthJ0QXmHTG', 'Belum Di Input', NULL, 2, 1, NULL, NULL, 2, NULL, '2022-01-13 15:52:31', '2022-01-13 15:52:31');
 
 -- --------------------------------------------------------
 
@@ -370,7 +428,12 @@ INSERT INTO `user_access_menu` (`id`, `user_role_id`, `user_menu_id`, `created_a
 (151, 1, 11, '2021-03-02 16:30:51', '2021-03-02 16:30:51'),
 (152, 1, 13, '2021-03-02 16:30:51', '2021-03-02 16:30:51'),
 (153, 2, 3, '2021-06-05 21:24:15', '2021-06-05 21:24:15'),
-(154, 1, 3, '2021-06-05 21:24:15', '2021-06-05 21:24:15');
+(154, 1, 3, '2021-06-05 21:24:15', '2021-06-05 21:24:15'),
+(155, 2, 283, '2022-01-12 08:19:41', '2022-01-12 08:19:41'),
+(157, 2, 284, NULL, NULL),
+(158, 1, 283, '2022-01-13 08:54:26', '2022-01-13 08:54:26'),
+(159, 1, 284, '2022-01-13 08:55:58', '2022-01-13 08:55:58'),
+(160, 2, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -397,7 +460,9 @@ INSERT INTO `user_menu` (`id`, `title`, `url`, `icon`, `created_at`, `updated_at
 (3, 'Jadwal Pengiriman', '/jadwal', 'calendar', '2021-06-05 21:22:20', '2021-06-05 21:22:37'),
 (9, 'Transaksi', '/transaksi', 'package', '2020-08-31 02:49:50', '2021-06-09 22:44:13'),
 (11, 'Settings', '/settings', 'settings', '2020-08-31 02:49:50', '2021-06-09 22:44:13'),
-(13, 'Laporan', '/laporan', 'clipboard', '2020-08-31 02:49:50', '2021-06-09 22:44:13');
+(13, 'Laporan', '/laporan', 'clipboard', '2020-08-31 02:49:50', '2021-06-09 22:44:13'),
+(283, 'Friends', '/friends', 'clipboard', '2022-01-12 08:17:37', '2022-01-12 08:17:45'),
+(284, 'Groups', '/groups', 'clipboard', '2022-01-12 08:50:34', '2022-01-12 08:50:34');
 
 -- --------------------------------------------------------
 
@@ -488,6 +553,18 @@ ALTER TABLE `data_toko`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `friends`
+--
+ALTER TABLE `friends`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `groups`
+--
+ALTER TABLE `groups`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `transaksi`
 --
 ALTER TABLE `transaksi`
@@ -562,6 +639,18 @@ ALTER TABLE `data_toko`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 
 --
+-- AUTO_INCREMENT untuk tabel `friends`
+--
+ALTER TABLE `friends`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT untuk tabel `groups`
+--
+ALTER TABLE `groups`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT untuk tabel `transaksi`
 --
 ALTER TABLE `transaksi`
@@ -571,19 +660,19 @@ ALTER TABLE `transaksi`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1626748652;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1642089151;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_access_menu`
 --
 ALTER TABLE `user_access_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=161;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_menu`
 --
 ALTER TABLE `user_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=283;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=285;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_menu2`

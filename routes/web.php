@@ -1,10 +1,12 @@
 <?php
+
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\LaporanController;
 use App\Http\Controllers\admin\SettingsController;
 use App\Http\Controllers\admin\TransaksiController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ExportController;
+use App\Http\Controllers\friends\FriendsController;
 use App\Http\Controllers\menu\MenuController;
 use App\Http\Controllers\menu\SubmenuController;
 use App\Http\Controllers\menu\SubsubmenuController;
@@ -34,6 +36,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
  */
+
 Route::get('/notauthorized', [UserController::class, 'notauthorized']);
 Route::get('/auth', [AuthController::class, 'authh'])->name('authh');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
@@ -86,7 +89,6 @@ Route::middleware(['Admin'])->group(function () {
     Route::get('/exportabsenharianguruhistory/{dari}/{ke}', [ExportController::class, 'exportabsenharianguruhistory']);
     Route::get('/exportabsenhariansiswa', [ExportController::class, 'exportexportabsenhariansiswa']);
     Route::get('/exportabsenhariansiswahistory/{dari}/{ke}', [ExportController::class, 'exportabsenhariansiswahistory']);
-
 });
 
 // End kepala Ruangan
@@ -101,3 +103,26 @@ Route::middleware(['User'])->group(function () {
     Route::resource('/transaksi', TransaksiController::class);
     Route::get('/transaksi/create/{tgl}', [TransaksiController::class, 'create']);
 });
+
+
+
+// Tugas 
+
+// Route::get('', [CobaController::class, 'index']);
+//Route::get('/friends', [CobaController::class, 'index']);
+//Route::get('/friends/create', [CobaController::class, 'create']);
+//Route::post('/friends', [CobaController::class, 'store']);
+//Route::get('/friends/{id}', [CobaController::class, 'show']);
+//Route::get('/friends/{id}/edit', [CobaController::class, 'edit']);
+Route::get('/friends/{id}/detail', [FriendsController::class, 'detail']);
+//Route::put('/friends/{id}', [CobaController::class, 'update']);
+//Route::delete('/friends/{id}', [CobaController::class, 'destroy']);
+
+
+Route::resources([
+    'friends' => FriendsController::class,
+    'groups' => GroupsController::class,
+]);
+Route::get('/groups/addmember/{group}', [GroupsController::class, 'addmember']);
+Route::put('/groups/addmember/{group}', [GroupsController::class, 'updateaddmember']);
+Route::put('/groups/deleteaddmember/{group}', [GroupsController::class, 'deleteaddmember']);

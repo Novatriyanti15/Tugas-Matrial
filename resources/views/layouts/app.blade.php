@@ -31,28 +31,24 @@ $roleid = User_role::find($role);
 
 <!-- BEGIN: Body-->
 
-<body class="vertical-layout vertical-menu-modern  navbar-floating footer-static   menu-collapsed" data-open="click"
-    data-menu="vertical-menu-modern" data-col="">
+<body class="vertical-layout vertical-menu-modern  navbar-floating footer-static   menu-collapsed" data-open="click" data-menu="vertical-menu-modern" data-col="">
 
 
     @if (session('status'))
-        <div class="toast toast-basic position-fixed fade show" id="toast" role="status" aria-live="polite"
-            aria-atomic="true" data-delay="1000" style="top: 1rem; right: 1rem;" data-autohide="true">
-            <div class="toast-header">
-                <img src="{{ asset('/images/logo/logosmk.png') }}" class="mr-1" alt="Toast image" height="25"
-                    width="25">
-                <strong class="mr-5">{{ $user->name }}</strong>
-                <small class="text-muted ml-5">0 mins ago</small>
-                <button type="button" onclick="myFunction()" class=" ml-1 close" data-dismiss="toast"
-                    aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="toast-body">
-                <div class="badge badge-pill badge-light-{{ session('warna') }}">{{ session('status') }}
-                </div>
+    <div class="toast toast-basic position-fixed fade show" id="toast" role="status" aria-live="polite" aria-atomic="true" data-delay="1000" style="top: 1rem; right: 1rem;" data-autohide="true">
+        <div class="toast-header">
+            <img src="{{ asset('/images/logo/logosmk.png') }}" class="mr-1" alt="Toast image" height="25" width="25">
+            <strong class="mr-5">{{ $user->name }}</strong>
+            <small class="text-muted ml-5">0 mins ago</small>
+            <button type="button" onclick="myFunction()" class=" ml-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body">
+            <div class="badge badge-pill badge-light-{{ session('warna') }}">{{ session('status') }}
             </div>
         </div>
+    </div>
     @endif
 
 
@@ -62,21 +58,13 @@ $roleid = User_role::find($role);
         <div class="navbar-container d-flex content">
             <div class="bookmark-wrapper d-flex align-items-center">
                 <ul class="nav navbar-nav d-xl-none">
-                    <li class="nav-item"><a class="nav-link menu-toggle" href="javascript:void(0);"><i class="ficon"
-                                data-feather="menu"></i></a></li>
+                    <li class="nav-item"><a class="nav-link menu-toggle" href="javascript:void(0);"><i class="ficon" data-feather="menu"></i></a></li>
                 </ul>
             </div>
             <ul class="nav navbar-nav align-items-center ml-auto">
 
-                <li class="nav-item dropdown dropdown-user"><a class="nav-link dropdown-toggle dropdown-user-link"
-                        id="dropdown-user" href="javascript:void(0);" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                        <div class="user-nav d-sm-flex d-none"><span
-                                class="user-name font-weight-bolder">{{ $user->name }}</span><span
-                                class="user-status">{{ $user->user_role->role }}</span></div><span
-                            class="avatar"><img class="round"
-                                src="{{ asset('/images/profile_user/' . $user->image) }}" alt="avatar" height="40"
-                                width="40"><span class="avatar-status-online"></span></span>
+                <li class="nav-item dropdown dropdown-user"><a class="nav-link dropdown-toggle dropdown-user-link" id="dropdown-user" href="javascript:void(0);" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="user-nav d-sm-flex d-none"><span class="user-name font-weight-bolder">{{ $user->name }}</span><span class="user-status">{{ $user->user_role->role }}</span></div><span class="avatar"><img class="round" src="{{ asset('/images/profile_user/' . $user->image) }}" alt="avatar" height="40" width="40"><span class="avatar-status-online"></span></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user">
                         <a class="dropdown-item" href="/user"><i class="mr-50" data-feather="user"></i>
@@ -115,25 +103,23 @@ $roleid = User_role::find($role);
 
                 <hr>
                 @php
-                    $menu = DB::select('SELECT m.* FROM user_access_menu u , user_menu m WHERE u.user_menu_id = m.id AND u.user_role_id = :role', ['role' => $user->user_role_id]);
-                    // dd($menu);
+                $menu = DB::select('SELECT m.* FROM user_access_menu u , user_menu m WHERE u.user_menu_id = m.id AND u.user_role_id = :role', ['role' => $user->user_role_id]);
+                // dd($menu);
                 @endphp
 
 
                 @foreach ($menu as $m)
 
-                    {{-- menu 1 --}}
-                    @if ($title == $m->title)
-                        <li class="active nav-item">
-                        @else
-                        <li class=" nav-item">
+                {{-- menu 1 --}}
+                @if ($title == $m->title)
+                <li class="active nav-item">
+                    @else
+                <li class=" nav-item">
                     @endif
 
-                    <a class="d-flex align-items-center" href="{{ $m->url }}"><i
-                            data-feather="{{ $m->icon }}"></i><span class="menu-title text-truncate"
-                            data-i18n="Calendar">{{ $m->title }}</span>
+                    <a class="d-flex align-items-center" href="{{ $m->url }}"><i data-feather="{{ $m->icon }}"></i><span class="menu-title text-truncate" data-i18n="Calendar">{{ $m->title }}</span>
                     </a>
-                @endforeach
+                    @endforeach
 
             </ul>
         </div>
@@ -291,8 +277,7 @@ $roleid = User_role::find($role);
         <p class="clearfix mb-0"><span class="float-md-left d-block d-md-inline-block mt-25">COPYRIGHT &copy;
                 {{ date('Y') }}<a class="ml-25">Sunset Orange</a><span class="d-none d-sm-inline-block">, All
                     rights
-                    Reserved</span></span><span class="float-md-right d-none d-md-block">Hand-crafted & Made with<i
-                    data-feather="heart"></i></span></p>
+                    Reserved</span></span><span class="float-md-right d-none d-md-block">Hand-crafted & Made with<i data-feather="heart"></i></span></p>
     </footer>
     <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
     <!-- END: Footer-->

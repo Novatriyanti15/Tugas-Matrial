@@ -21,14 +21,13 @@ class AuthController extends Controller
 
     public function index()
     {
-         $listuser = Users::all();
+        $listuser = Users::all();
 
-         return view('listuser')->with("listuser", $listuser);
-
-
+        return view('listuser')->with("listuser", $listuser);
     }
 
-    public function authh(){
+    public function authh()
+    {
 
         return view('auth');
     }
@@ -73,8 +72,12 @@ class AuthController extends Controller
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             if (Auth::user()->user_role_id == 1) {
                 if (Auth::user()->is_active == 1) {
+                    $user = Users::find(['email' => $request->email]);
+                    $user->status = 'online';
+                    $user->save();
                     return redirect('/dashboard');
                 } else {
+
 
                     Auth::logout();
                     $request->session()->flush();

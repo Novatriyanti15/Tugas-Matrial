@@ -1,6 +1,6 @@
 @extends('layouts.login')
 @section('title')
-    Daftar User
+Daftar User
 @endsection
 @section('content')
 <!DOCTYPE html>
@@ -29,28 +29,24 @@
 
 <!-- BEGIN: Body-->
 
-<body class="vertical-layout vertical-menu-modern  navbar-floating footer-static   menu-collapsed" data-open="click"
-    data-menu="vertical-menu-modern" data-col="">
+<body class="vertical-layout vertical-menu-modern  navbar-floating footer-static   menu-collapsed" data-open="click" data-menu="vertical-menu-modern" data-col="">
 
 
     @if (session('status'))
-        <div class="toast toast-basic position-fixed fade show" id="toast" role="status" aria-live="polite"
-            aria-atomic="true" data-delay="1000" style="top: 1rem; right: 1rem;" data-autohide="true">
-            <div class="toast-header">
-                <img src="{{ asset('/images/logo/logosmk.png') }}" class="mr-1" alt="Toast image" height="25"
-                    width="25">
-                <strong class="mr-5">{{ $user->name }}</strong>
-                <small class="text-muted ml-5">0 mins ago</small>
-                <button type="button" onclick="myFunction()" class=" ml-1 close" data-dismiss="toast"
-                    aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="toast-body">
-                <div class="badge badge-pill badge-light-{{ session('warna') }}">{{ session('status') }}
-                </div>
+    <div class="toast toast-basic position-fixed fade show" id="toast" role="status" aria-live="polite" aria-atomic="true" data-delay="1000" style="top: 1rem; right: 1rem;" data-autohide="true">
+        <div class="toast-header">
+            <img src="{{ asset('/images/logo/logosmk.png') }}" class="mr-1" alt="Toast image" height="25" width="25">
+            <strong class="mr-5"></strong>
+            <small class="text-muted ml-5">0 mins ago</small>
+            <button type="button" onclick="myFunction()" class=" ml-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body">
+            <div class="badge badge-pill badge-light-{{ session('warna') }}">{{ session('status') }}
             </div>
         </div>
+    </div>
     @endif
 
 
@@ -60,11 +56,11 @@
         <div class="navbar-container d-flex content">
             <a class="btn btn-info" href="/auth"> Login </a>
             <div>
-            <a class="btn btn-success" href="/register"> Register</a></div>
+                <a class="btn btn-success" href="/register"> Register</a>
+            </div>
             <div class="bookmark-wrapper d-flex align-items-center">
                 <ul class="nav navbar-nav d-xl-none">
-                    <li class="nav-item"><a class="nav-link menu-toggle" href="javascript:void(0);"><i class="ficon"
-                                data-feather="menu"></i></a></li>
+                    <li class="nav-item"><a class="nav-link menu-toggle" href="javascript:void(0);"><i class="ficon" data-feather="menu"></i></a></li>
                 </ul>
             </div>
             <ul class="nav navbar-nav align-items-center ml-auto">
@@ -90,7 +86,7 @@
         <div class="main-menu-content">
         </div>
     </div>
-@push('css')
+    @push('css')
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('/vendors/css/vendors.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/vendors/css/forms/wizard/bs-stepper.min.css') }}">
@@ -110,8 +106,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/core/menu/menu-types/vertical-menu.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/plugins/forms/form-validation.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/plugins/forms/form-wizard.min.css') }}">
-@endpush
-@section('content')
+    @endpush
+    @section('content')
 
     <div class="app-content content ">
         <div class="content-overlay"></div>
@@ -123,58 +119,57 @@
                 <div class="row">
                     <div class="col-12">
 
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-
-                    <div class="row p-2 justify-content-between">
-                        <div class="col-lg-6 col-sm-4">
-                            <h4>Daftar Users</h4>
-                        </div>
-                        <div class="col-lg-6 col-sm-8 text-right content-justify-end">
-
-                        </div>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table table-sm table-hover-animation">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama</th>
-                                    <th>Email</th>
-                                    <th>Telepon</th>
-                                    <th>Alamat</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php
-                                    $no = 1;
-                                @endphp
-                                @foreach ($listuser as $index => $lt)
-                                    <tr>
-                                        <td>{{ $no++ }}</td>
-                                        <td>{{ $lt->name }}</td>
-                                        <td>{{ $lt->email }}</td>
-                                        <td>{{ $lt->telepon }}</td>
-                                        <td>{{ $lt->alamat }}</td>
-
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
                     </div>
                 </div>
             </div>
-        </div>
+            <div class="card">
+                <div class="row p-2 justify-content-between">
+                    <div class="col-lg-6 col-sm-4">
+                        <h4>Daftar Users</h4>
+                    </div>
+                    <div class="col-lg-6 col-sm-8 text-right content-justify-end">
 
-        </section>
-        <!-- users edit ends -->
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-sm table-hover-animation">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama</th>
+                                <th>Email</th>
+                                <th>Telepon</th>
+                                <th>Alamat</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                            $no = 1;
+                            @endphp
+                            @foreach ($listuser as $index => $lt)
+                            <tr>
+                                <td>{{ $no++ }}</td>
+                                <td>{{ $lt->name }}</td>
+                                <td>{{ $lt->email }}</td>
+                                <td>{{ $lt->telepon }}</td>
+                                <td>{{ $lt->alamat }}</td>
+
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </section>
+    <!-- users edit ends -->
 
     </div>
 
 
-@push('script')
+    @push('script')
 
 
     <!-- BEGIN: Vendor JS-->
@@ -196,4 +191,4 @@
     <!-- BEGIN: Page JS-->
     <script src="{{ asset('/js/scripts/forms/form-wizard.min.js') }}"></script>
 
-@endpush
+    @endpush
